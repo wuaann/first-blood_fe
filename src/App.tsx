@@ -5,10 +5,11 @@ import {Route, Routes,} from "react-router-dom";
 import LoginPage from "./features/auth/pages/LoginPage";
 import {NotFound} from "./components/common";
 import Home from "./features/bug/pages/home";
+import {useAppSelector} from "./app/hooks";
+import {selectCurrentUser} from "./features/auth/authSlice";
 
 function App() {
-    const [user,setUser] = useState(false);
-
+ const user = useAppSelector(selectCurrentUser);
     return (
         <>
             <Routes>
@@ -24,7 +25,7 @@ function App() {
                         :
                        <>
                            <Route path={"/login"} element={<LoginPage/>}/>
-                           <Route path={"*"} element={<NotFound/>}/>
+                           <Route path={"*"} element={<LoginPage/>}/>
                        </>
             }
             </Routes>

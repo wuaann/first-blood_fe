@@ -1,4 +1,9 @@
 export interface User{
-    id: number|string;
-    name: string;
+    id?: string | number,
+    username: string,
+    email: string,
+    role: string,
+    created_at?: string,
+    update_at?: string,
+
 }

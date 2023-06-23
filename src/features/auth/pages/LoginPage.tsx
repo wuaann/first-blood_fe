@@ -18,8 +18,8 @@ function LoginPage(props: LoginPageProps) {
     };
     const handleLoginClick = () => {
         dispatch(authAction.login({
-            email: '',
-            password: ''
+            username: email,
+            password: password
         }))
 
     }
@@ -64,7 +64,7 @@ function LoginPage(props: LoginPageProps) {
                     <span><input type="checkbox" value="Remember me"/>Remember me</span>
                     <span id='forgot'>Forgot password?</span>
                 </div>
-                <button type="submit" onClick={handleLoginClick} className="form-submit">Sign In</button>
+                <p  onClick={handleLoginClick} className="form-submit">Sign In</p>
             </form>
         </div>
     );

@@ -1,18 +1,18 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {User} from "../../models/user";
+import {Token} from "../../models";
 
 
 
     
 export interface LoginPayload {
-    email: string;
+    username: string;
     password: string;
 }
 
 export interface AuthState{
     isLoggedIn: boolean;
     logging?: boolean;
-    currentUser?: User;
+    currentUser?: Token["user"];
 }
 const initialState: AuthState ={
     isLoggedIn:false,
@@ -27,14 +27,15 @@ const authSlice = createSlice({
         login(state, action:PayloadAction<LoginPayload>){
             state.logging = true
         },
-        loginSuccess(state, action:PayloadAction<User>){
+
+        loginSuccess(state, action:PayloadAction<Token['user']>){
             state.logging = false;
-            state.isLoggedIn=true
+            state.isLoggedIn=true;
             state.currentUser = action.payload
         },
-        loginFailed(state, action:PayloadAction<string>){
-            state.logging = false
 
+        loginFailed(state, action:PayloadAction<string>){
+            state.logging = false;
         },
 
         logout(state,){
