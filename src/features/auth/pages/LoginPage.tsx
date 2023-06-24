@@ -35,7 +35,7 @@ function LoginPage(props: LoginPageProps) {
                         <input
                             type="text"
                             className="form-input"
-                            placeholder="Username"
+                            placeholder="Email"
                             required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
