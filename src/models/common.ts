@@ -1,9 +1,15 @@
-export interface ListResponse<T>{
-    data:T[];
+export interface ListResponse<T> {
+    data: T[];
 }
 
-export interface Token{
-    access_token: string,
-    user:[]
+export interface TokenResponse {
+    code: number,
+    message: string,
+    data: {
+
+        user: [],
+        accessToken: string
+
+    }
 }
 

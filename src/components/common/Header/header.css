@@ -1,0 +1,76 @@
+.header {
+    display: grid;
+    grid-template-columns: 10% 10% 10% 50% 10% 10%;
+    margin-left: 15%;
+    top: 20px;
+
+}
+
+.nameproject {
+    position: absolute;
+    width: 72px;
+    height: 52px;
+    left: 54px;
+    top: 0;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 46px;
+    letter-spacing: 0.075em;
+
+    background: linear-gradient(270deg, #0085FF 21.31%, #CA0B7D 46.5%, #EF6262 65.59%, rgba(230, 11, 11, 0.88) 92%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.iconavatar {
+    font-size: 25px;
+    margin-top: 9px;
+}
+
+.iconsitting {
+    font-size: 27px;
+    margin-top: 8px;
+}
+
+.function {
+    display: flex;
+    gap: 20px;
+    margin-left:700px;
+}
+
+.titleproject {
+
+    margin-top: 10px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 17px;
+
+    color: #0052CC;
+
+}
+
+.titleprojects {
+
+
+    margin-top: 10px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 17px;
+
+    color: #344563;
+
+
+}
+
+.creact {
+    margin-top: 8px;
+    background: #0052CC;
+    border-radius: 5px;
+    width: 55px;
+    border: 3px solid #0052CC
+}

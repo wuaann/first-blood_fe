@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Token} from "../../models";
+import {TokenResponse} from "../../models";
 
 
 
@@ -12,7 +12,7 @@ export interface LoginPayload {
 export interface AuthState{
     isLoggedIn: boolean;
     logging?: boolean;
-    currentUser?: Token["user"];
+    currentUser?: TokenResponse["data"]['user'];
 }
 const initialState: AuthState ={
     isLoggedIn:false,
@@ -28,10 +28,10 @@ const authSlice = createSlice({
             state.logging = true
         },
 
-        loginSuccess(state, action:PayloadAction<Token['user']>){
+        loginSuccess(state, action:PayloadAction<TokenResponse['data']>){
             state.logging = false;
             state.isLoggedIn=true;
-            state.currentUser = action.payload
+            state.currentUser = action.payload.user
         },
 
         loginFailed(state, action:PayloadAction<string>){
