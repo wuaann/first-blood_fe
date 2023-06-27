@@ -78,7 +78,7 @@ hr{
 }
 
 .infomation-detail-userone {
-    margin-left: 425px;
+    margin-left: 50px;
     margin-top: 18px;
     
 }
@@ -95,6 +95,10 @@ hr{
 
 .slider {
     margin-right: 90%;
+}
+.desc{
+    margin-left: 200px;
+    width: 120px;
 }
 
 .slick-slide {
