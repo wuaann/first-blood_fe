@@ -1,5 +1,7 @@
 
-import './header.css'
+import './header.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faGear, faCircleUser} from '@fortawesome/free-solid-svg-icons';
 export function Header() {
     return (
         <>
@@ -11,10 +13,14 @@ export function Header() {
                 <div className="titleprojects">Project
                     <i className="fa-solid fa-chevron-down"></i>
                 </div>
-                <button className="creact">Creact</button>
+                <button className="create">Create</button>
                 <div className="function">
-                    <div className="iconsitting"><i className="fa fa-gear" ></i></div>
-                    <div className="iconavatar"><i className="fa-solid fa-circle-user"></i></div>
+                    {/* <div className="iconsitting"><i className="fa fa-gear" ></i></div>
+                    <div className="iconavatar"><i className="fa-solid fa-circle-user"></i></div> */}
+                    <span><FontAwesomeIcon className='icon1' icon={faCircleUser} /></span>
+                    <span>
+                    <FontAwesomeIcon className='icon2' icon={faGear} />
+                    </span>
                 </div>
             </div>
         </>
