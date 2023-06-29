@@ -4,29 +4,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 30px;
-    border-radius: 40px ; */
-    
 }
-/* .wrapper{
-    border: 30px;
-    border-radius: 40px ;
-} */
 .form-group {
     margin-top: 15px;
     display: flex;
     position: relative;
-    justify-content: space-between; /* Add space between the children elements */
+    justify-content: space-between;
     align-items: center;
 }
 #forgot{
     font-size: 16px;
 }
-.form-input{
-   /* text-align: right ,40px; */
-   /* padding-right: 60%; */
-}
-
 
 .fa-eye {
     color: rgba(176, 179, 184, 1);
@@ -120,9 +108,6 @@ h6 {
     padding: 10px 10px;
     transition: 0.25s ease-in-out;
     margin-top: 30px;
-
-    /* /* width: 390px; */
-    /* height: 50px;  */
     background: #21C2E5;
     border-radius: 10px;
     border: none;
@@ -130,24 +115,19 @@ h6 {
     font-weight: 400;
     font-size: 24px;
     line-height: 28px;
-    /* color: #FFFFFF; */
     margin-left: -6px;
-    /* margin-left: 1px; */
+
 }
 .form-submit  {
    color: #f6f6f6;
    align-items: center;
    text-align: center;
-   
-  
-    
 }
 
 
 .form-submit:hover {
     border: solid #54a0ff;
 }
-
 .error {
     border-color: red;
 }

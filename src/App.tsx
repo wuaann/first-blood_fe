@@ -1,15 +1,20 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 
 import {Route, Routes,} from "react-router-dom";
 import LoginPage from "./features/auth/pages/LoginPage";
-import {NotFound} from "./components/common";
 import Home from "./features/bug/pages/home";
 import {useAppSelector} from "./app/hooks";
-import {selectCurrentUser} from "./features/auth/authSlice";
+import {selectCurrentUser, selectToken} from "./features/auth/authSlice";
+import {Layout} from "./components/common/Layout/Layout";
+import Forgot from "./features/auth/pages/Forgot";
 
 function App() {
- const user = useAppSelector(selectCurrentUser);
+ let user;
+    user =useAppSelector(selectToken);
+    if (!user){
+        user = localStorage.getItem('accessToken');
+    }
     return (
         <>
             <Routes>
@@ -17,14 +22,16 @@ function App() {
                     user
                         ?
                         <>
-
-                            <Route path={'/'} element={<Home/>}/>
-                            <Route path="*" element={<Home/>}/>
+                            <Route path={'/'} element={<Layout/>}>
+                                <Route index element={<Home/>}/>
+                                <Route path="*" element={<Home/>}/>
+                            </Route>
                         </>
 
                         :
                        <>
                            <Route path={"/login"} element={<LoginPage/>}/>
+                           <Route path={"/forgot-password"} element={<Forgot/>}/>
                            <Route path={"*"} element={<LoginPage/>}/>
                        </>
             }
