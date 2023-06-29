@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 
 import {Route, Routes,} from "react-router-dom";
 import LoginPage from "./features/auth/pages/LoginPage";
 import Home from "./features/bug/pages/home";
 import {useAppSelector} from "./app/hooks";
-import {selectCurrentUser} from "./features/auth/authSlice";
-import {Header} from "./components/common/Header/Header";
+import {selectCurrentUser, selectToken} from "./features/auth/authSlice";
 import {Layout} from "./components/common/Layout/Layout";
+import Forgot from "./features/auth/pages/Forgot";
 
 function App() {
  let user;
-    user =useAppSelector(selectCurrentUser);
+    user =useAppSelector(selectToken);
     if (!user){
         user = localStorage.getItem('accessToken');
     }
@@ -31,6 +31,7 @@ function App() {
                         :
                        <>
                            <Route path={"/login"} element={<LoginPage/>}/>
+                           <Route path={"/forgot-password"} element={<Forgot/>}/>
                            <Route path={"*"} element={<LoginPage/>}/>
                        </>
             }

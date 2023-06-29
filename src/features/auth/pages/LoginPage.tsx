@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faUser, faLock, faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 import {useAppDispatch} from "../../../app/hooks";
-import {authAction} from "../authSlice";
+import {authActions} from "../authSlice";
 import './login.css'
+import {Link} from "react-router-dom";
 export interface LoginPageProps {
 }
 
@@ -17,7 +18,7 @@ function LoginPage(props: LoginPageProps) {
         setPasswordVisible(!passwordVisible);
     };
     const handleLoginClick = () => {
-        dispatch(authAction.login({
+        dispatch(authActions.login({
             username: email,
             password: password
         }))
@@ -62,7 +63,7 @@ function LoginPage(props: LoginPageProps) {
                 </div>
                 <div className="form-group"> {/* Add a new class for the enclosing div */}
                     <span><input type="checkbox" value="Remember me"/>Remember me</span>
-                    <span id='forgot'>Forgot password?</span>
+                    <Link id={'forgot'} to={'/forgot-password'}>Forgot password? </Link>
                 </div>
                 <p  onClick={handleLoginClick} className="form-submit">Sign In</p>
             </form>
