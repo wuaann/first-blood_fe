@@ -1,88 +1,89 @@
-import React from 'react';
-import './admin.css';
+import React, { useState, useEffect } from 'react';
+import './project.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-    faChevronRight,
-    faChevronLeft, faGear,
-    faCircleUser,
-    faAngleDown,
-    faPen,
-    faTrash} from '@fortawesome/free-solid-svg-icons';
-export interface HomeProps {
+import { faTrash, faPlus, faPen } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap/dist/css/bootstrap.css';
+import Header from 'features/bug/pages/components/header';
+
+interface Project {
+  id: number;
+  Projectname: string;
+  email: string;
+  project: string;
+  username: string;
 }
 
-function Admin(props: HomeProps) {
-    return (
-        <>
-           <div className="header">
-                <div className="nameproject">FIB</div>
-                <div className="titleproject">Project <FontAwesomeIcon icon={faAngleDown} />
-                   
-                </div>
-                <div className="titleprojects">Project <FontAwesomeIcon icon={faAngleDown} />
-                </div>
-                <button className="create">Create</button>
-                <div className="function">
-                    {/* <div className="iconsitting"><i className="fa fa-gear" ></i></div>
-                    <div className="iconavatar"><i className="fa-solid fa-circle-user"></i></div> */}
-                    <span><FontAwesomeIcon className='icon1' icon={faCircleUser} /></span>
-                    <span>
-                    <FontAwesomeIcon className='icon2' icon={faGear} />
-                    </span>
-                </div>
-            </div>
-            <hr />
-            <div className="project">
-                <div>
-                    <h1>Projects</h1>
-                </div>
-                <button className="creactproject">Create Project</button>
-            </div>
+const Admin: React.FC = () => {
+  const [projects, setProjects] = useState<Project[]>([]);
 
-            <div className="name-lead">
-                <div className="name-blood">
-                    <h4>Project</h4>
-                </div>
-                <div className="name-lead">
-                    <h4>Username</h4>
-                </div>
-                <div></div>
+  useEffect(() => {
+    fetchProjects();
+  }, []);
 
-            </div>
-            <div className="line2"></div>
-            <div className="information-firstblood">
-                <div className="nameblood">
-                    <div className="nameblood-one">
-                        <h4>First Blood</h4>
-                    </div>
-                    <div className="infomation-user">
-                        <div className="avatars-useone">
-                            <img
-                                src="https://afamilycdn.com/150157425591193600/2020/7/22/jo-29-15954061435372014380172.png"
-                                width="25px" height="25px" alt=""/>
-                        </div>
-                        <div className="leads">Dang Minh Quan</div>
-                    </div>
-                    <div className="infomation-detail-userone">
-                    <FontAwesomeIcon icon={faTrash} />
-                    <FontAwesomeIcon className='pen' icon={faPen} />
-                    </div>
-                </div>
-                <div className="line1"></div>
-              
-                
+  const fetchProjects = async () => {
+    try {
+      const response = await fetch('https://your-laravel-api/projects');
+      const data = await response.json();
+      setProjects(data);
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+    }
+  };
 
+  const handleDeleteProject = async (id: number) => {
+    try {
+      await fetch(`https://your-laravel-api/projects/${id}`, {
+        method: 'DELETE',
+      });
+      setProjects(projects.filter(project => project.id !== id));
+    } catch (error) {
+      console.error('Error deleting project:', error);
+    }
+  };
 
-            </div>
-
-            <div className="pagination">
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                        <span className="pagination-number">1</span>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                   
-            </div>
-        </>
-    );
-}
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-1">
+          <Header />
+        </div>
+        <div className="col-sm-11">
+          <table className="table">
+          <thead>
+              <tr>
+                <th>No.</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Project</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {projects.map(project => (
+                <tr key={project.id}>
+                  <th scope="row">{project.id}</th>
+                  <td>{project.username}</td>
+                  <td>{project.email}</td>
+                  <td>{project.project}</td>
+                  <td>
+                    <button className="btn btn-warning btn-sm" title="Edit">
+                      <FontAwesomeIcon icon={faPen} />
+                    </button>
+                    <button className="btn btn-primary btn-sm" title="Add">
+                      <FontAwesomeIcon icon={faPlus} />
+                    </button>
+                    <button className="btn btn-danger btn-sm" title="Delete">
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Admin;
