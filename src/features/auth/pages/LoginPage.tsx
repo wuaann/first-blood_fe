@@ -19,7 +19,7 @@ function LoginPage(props: LoginPageProps) {
     };
     const handleLoginClick = () => {
         dispatch(authActions.login({
-            username: email,
+            email: email,
             password: password
         }))
 

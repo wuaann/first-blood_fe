@@ -1,30 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 
 import {Route, Routes,} from "react-router-dom";
 import LoginPage from "./features/auth/pages/LoginPage";
-import Home from "./features/bug/pages/home";
 import {useAppSelector} from "./app/hooks";
-import {selectCurrentUser, selectToken} from "./features/auth/authSlice";
 import {Layout} from "./components/common/Layout/Layout";
 import Forgot from "./features/auth/pages/Forgot";
+import {authActions, selectCurrentUser, selectToken} from "./features/auth/authSlice";
+import BugFeature from "./features/project";
+import {useDispatch} from "react-redux";
+
+
 
 function App() {
- let user;
-    user =useAppSelector(selectToken);
-    if (!user){
-        user = localStorage.getItem('accessToken');
-    }
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(authActions.getCurrentUser())
+    },[dispatch])
+    const token =useAppSelector(selectToken);
     return (
         <>
             <Routes>
                 {
-                    user
+                    token
                         ?
                         <>
                             <Route path={'/'} element={<Layout/>}>
-                                <Route index element={<Home/>}/>
-                                <Route path="*" element={<Home/>}/>
+                                <Route index element={<BugFeature/>}/>
+                                <Route path="*" element={<BugFeature/>}/>
                             </Route>
                         </>
 
