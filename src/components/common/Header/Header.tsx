@@ -2,7 +2,15 @@
 import './header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faGear, faCircleUser} from '@fortawesome/free-solid-svg-icons';
+import {useAppDispatch} from "../../../app/hooks";
+import {authActions} from "../../../features/auth/authSlice";
 export function Header() {
+    const dispatch = useAppDispatch()
+    const handlelogout = () => {
+        dispatch(authActions.logout())
+
+    }
+
     return (
         <>
             <div className="header">
@@ -13,7 +21,7 @@ export function Header() {
                 <div className="titleprojects">Project
                     <i className="fa-solid fa-chevron-down"></i>
                 </div>
-                <button className="create">Create</button>
+                <button onClick={() =>{handlelogout()}} className="create">Logout</button>
                 <div className="function">
                     {/* <div className="iconsitting"><i className="fa fa-gear" ></i></div>
                     <div className="iconavatar"><i className="fa-solid fa-circle-user"></i></div> */}

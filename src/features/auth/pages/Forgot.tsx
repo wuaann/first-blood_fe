@@ -1,18 +1,15 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEye, faEyeSlash, faLock, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faUser} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import React, {useState} from "react";
-import {authActions} from "../authSlice";
-import {useAppDispatch} from "../../../app/hooks";
 
 function Forgot() {
-
-    const dispatch = useAppDispatch();
+    //
     const [email, setEmail] = useState('');
     const handleLoginClick = () => {
 
-
     }
+    // }
     return(
         <>
             <div id="wrapper">

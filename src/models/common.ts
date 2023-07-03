@@ -1,15 +1,10 @@
 export interface ListResponse<T> {
-    data: T[];
+    code: number,
+    message: string,
+    data: T[]
 }
 
 export interface TokenResponse {
-    code: number,
-    message: string,
-    data: {
-
-        user: [],
-        accessToken: string
-
-    }
+    accessToken: string
 }
 

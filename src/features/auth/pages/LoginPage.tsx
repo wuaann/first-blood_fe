@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faUser, faLock, faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
-import {useAppDispatch} from "../../../app/hooks";
-import {authActions} from "../authSlice";
+import {useAppDispatch, useAppSelector} from "../../../app/hooks";
+import {authActions, selectLogging} from "../authSlice";
 import './login.css'
 import {Link} from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
+
 export interface LoginPageProps {
 }
 
@@ -17,9 +19,10 @@ function LoginPage(props: LoginPageProps) {
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
+    const logging = useAppSelector(selectLogging);
     const handleLoginClick = () => {
         dispatch(authActions.login({
-            username: email,
+            email: email,
             password: password
         }))
 
@@ -60,12 +63,19 @@ function LoginPage(props: LoginPageProps) {
                             />
                         </div>
                     </div>
+
                 </div>
                 <div className="form-group"> {/* Add a new class for the enclosing div */}
                     <span><input type="checkbox" value="Remember me"/>Remember me</span>
                     <Link id={'forgot'} to={'/forgot-password'}>Forgot password? </Link>
                 </div>
-                <p  onClick={handleLoginClick} className="form-submit">Sign In</p>
+
+                <p  onClick={handleLoginClick} className="form-submit">  <ClipLoader
+                    loading={logging}
+                    size={20}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />Sign In</p>
             </form>
         </div>
     );
