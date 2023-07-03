@@ -27,7 +27,7 @@ function Admin(props: HomeProps) {
                     
                 </a></li>
                 <li><a href="#">
-                <i className="uil uil-clipboard-notes"></i>
+                    <i className="uil uil-clipboard-notes"></i>
                     <span className="link-name">Projects</span>
                 </a></li>
                 <li><a href="#">
@@ -55,33 +55,7 @@ function Admin(props: HomeProps) {
         </div>
 
         <div className="dash-content">
-            <div className="overview">
-                <div className="title">
-                    <i className="uil uil-tachometer-fast-alt"></i>
-                    <span className="text">Dashboard</span>
-                </div>
-
-                <div className="boxes">
-                    <div className="box box1">
-                        <i className="uil uil-user"></i>
-                        <span className="text">Users</span>
-                        <span></span>
-                        <span id="user"></span>
-                    </div>
-                    <div className="box box2">
-                        <i className="uil uil-clipboard-notes"></i>
-                        <span className="text">Projects</span>
-                        <span></span>
-                        <span id="order"></span>
-                    </div>
-                    <div className="box box3">
-                        <i className="uil uil-bug"></i>
-                        <span className="text">Bugs</span>
-                        <span></span>
-                        <span id="room"></span>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </section>
         </>

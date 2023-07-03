@@ -8,6 +8,7 @@ import {useAppSelector} from "./app/hooks";
 import {selectCurrentUser, selectToken} from "./features/auth/authSlice";
 import {Layout} from "./components/common/Layout/Layout";
 import Forgot from "./features/auth/pages/Forgot";
+import Admin from 'features/admin/pages/admin';
 
 function App() {
  let user;
@@ -25,7 +26,9 @@ function App() {
                             <Route path={'/'} element={<Layout/>}>
                                 <Route index element={<Home/>}/>
                                 <Route path="*" element={<Home/>}/>
+                               
                             </Route>
+                            <Route path="/admin" element={<Admin/>}/>
                         </>
 
                         :
