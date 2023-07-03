@@ -175,3 +175,6 @@ hr{
     margin-left: 50px;
     margin-top: 20px;
 }
+.bar-loader{
+    width: 100%;
+}

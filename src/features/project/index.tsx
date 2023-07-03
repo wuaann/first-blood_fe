@@ -3,9 +3,8 @@ import React from "react";
 import CreateProject from "./pages/CreateProject";
 import HomePage from "./pages/HomePage";
 
-export default function BugFeature(){
-    // const match = useMatches();
-    // console.log(match);
+export default function ProjectFeature(){
+
     return(
 
         // <><div>quan</div></>
@@ -13,6 +12,7 @@ export default function BugFeature(){
             {/*<Route path={'/project'} element={<Layout/>}>*/}
                 <Route index element={<HomePage/>}/>
                 <Route path={'/project/add'} element={<CreateProject/>}/>
+                <Route path={'/project/:projectID'} element={<CreateProject/>}/>
              {/*</Route>*/}
         </Routes>
     )

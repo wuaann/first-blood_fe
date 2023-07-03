@@ -33,5 +33,6 @@ const projectSlice = createSlice({
 
 export const projectActions = projectSlice.actions;
 export const selectProjectByUser = (state:RootState) => state.projects.projectByUser;
+export const selectLoading = (state:RootState) => state.projects.loading;
 
 export const projectReducer = projectSlice.reducer;

@@ -6,9 +6,9 @@ import LoginPage from "./features/auth/pages/LoginPage";
 import {useAppSelector} from "./app/hooks";
 import {Layout} from "./components/common/Layout/Layout";
 import Forgot from "./features/auth/pages/Forgot";
-import {authActions, selectCurrentUser, selectToken} from "./features/auth/authSlice";
-import BugFeature from "./features/project";
+import {authActions, selectToken} from "./features/auth/authSlice";
 import {useDispatch} from "react-redux";
+import ProjectFeature from "./features/project";
 
 
 
@@ -18,6 +18,7 @@ function App() {
         dispatch(authActions.getCurrentUser())
     },[dispatch])
     const token =useAppSelector(selectToken);
+    const user =useAppSelector(selectToken);
     return (
         <>
             <Routes>
@@ -26,8 +27,8 @@ function App() {
                         ?
                         <>
                             <Route path={'/'} element={<Layout/>}>
-                                <Route index element={<BugFeature/>}/>
-                                <Route path="*" element={<BugFeature/>}/>
+                                <Route index element={<ProjectFeature/>}/>
+                                <Route path="*" element={<ProjectFeature/>}/>
                             </Route>
                         </>
 
