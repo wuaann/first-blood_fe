@@ -4,7 +4,9 @@ import ProjectTable from "../components/ProjectTable";
 import {useAppDispatch, useAppSelector} from "../../../app/hooks";
 import {projectActions, selectLoading, selectProjectByUser} from "../projectSlice";
 import { BarLoader } from 'react-spinners';
-import { useState, CSSProperties } from "react";
+import { CSSProperties } from "react";
+import {Project} from "../../../models";
+import { useNavigate } from "react-router-dom";
 
 
 const overrideCSS: CSSProperties ={
@@ -21,17 +23,25 @@ const overrideCSS: CSSProperties ={
 }
 
 function HomePage() {
-    const projesctList = useAppSelector(selectProjectByUser)
+    const projectList = useAppSelector(selectProjectByUser)
     const dispatch = useAppDispatch()
     const loading = useAppSelector(selectLoading)
+    const navigate = useNavigate()
+
     useEffect(() => {
         dispatch(projectActions.fetchProjectList())
     },[dispatch]);
-    console.log('data' ,projesctList);
+
+    const handleNavigate = (project: Project) => {
+        navigate(`project/${project.id}/bug`)
+    }
+    const handleEditProject = async (project:Project) => {
+      navigate(`project/${project.id}`)
+    }
     return (
         <>
             <BarLoader loading={loading} cssOverride={overrideCSS}  />
-            <ProjectTable projectList={projesctList}/>
+            <ProjectTable projectList={projectList} onNavigate={handleNavigate} onEdit={handleEditProject}/>
         </>
     );
 }

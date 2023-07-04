@@ -3,7 +3,7 @@ import { User} from "../models";
 
 const userApi = {
     getCurrentUser: () : Promise<User> => {
-        const url = '/current_user';
+        const url = '/current-user';
         return axiosClient.get(url);
     },
 
