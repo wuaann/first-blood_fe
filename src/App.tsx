@@ -3,22 +3,24 @@ import './App.css';
 
 import {Route, Routes,} from "react-router-dom";
 import LoginPage from "./features/auth/pages/LoginPage";
-import {useAppSelector} from "./app/hooks";
+import {useAppDispatch, useAppSelector} from "./app/hooks";
 import {Layout} from "./components/common/Layout/Layout";
 import Forgot from "./features/auth/pages/Forgot";
-import {authActions, selectToken} from "./features/auth/authSlice";
-import {useDispatch} from "react-redux";
+import {authActions, selectCurrentUser, selectToken} from "./features/auth/authSlice";
 import ProjectFeature from "./features/project";
 
 
 
 function App() {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(authActions.getCurrentUser())
-    },[dispatch])
-    const token =useAppSelector(selectToken);
-    const user =useAppSelector(selectToken);
+    const user =useAppSelector(selectCurrentUser);
+    const dispatch = useAppDispatch();
+
+        useEffect(() => {
+            if(!user){
+            dispatch(authActions.getCurrentUser())
+            }
+        },[dispatch,user])
+    const token = useAppSelector(selectToken);
     return (
         <>
             <Routes>

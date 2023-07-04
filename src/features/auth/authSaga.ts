@@ -1,11 +1,19 @@
 import {authActions, LoginPayload, selectCurrentUser} from "./authSlice";
 import {PayloadAction} from "@reduxjs/toolkit";
-import {put, take,takeEvery, fork, call, takeLatest} from 'redux-saga/effects';
+import {put, take,all, fork, call, takeLatest} from 'redux-saga/effects';
 import authApi from "../../api/authApi";
 import { TokenResponse, User} from "../../models";
 import userApi from "../../api/userApi";
 
+function* FetchCurrentUser() {
 
+    try {
+        const data: User = yield call(userApi.getCurrentUser);
+        yield put(authActions.setCurrentUser(data));
+    } catch (error:any) {
+        console.log(error.message)
+    }
+}
 function* handleLogin(payload: LoginPayload) {
     try {
         const data: TokenResponse = yield call(authApi.login, payload);
@@ -13,6 +21,7 @@ function* handleLogin(payload: LoginPayload) {
             yield put(authActions.loginSuccess(data.accessToken));
         }
         localStorage.setItem('accessToken', data.accessToken);
+        yield put(authActions.getCurrentUser());
     } catch (error: any) {
         yield put(authActions.loginFailed(error.message));
     }
@@ -23,11 +32,10 @@ function* handleLogout() {
     yield put(authActions.logout)
 }
 
-function* FetchCurrentUser() {
-        const data: User = yield call(userApi.getCurrentUser);
-        console.log(data)
-        yield put(authActions.setCurrentUser(data))}
 
+function* watchGetCurrentUser() {
+    yield takeLatest(authActions.getCurrentUser.type, FetchCurrentUser);
+}
 function* watchLoginFlow() {
     while (true) {
         const isLoggedIn = Boolean(localStorage.getItem('accessToken'));
@@ -44,6 +52,8 @@ function* watchLoginFlow() {
 
 
 export function* authSaga() {
-    yield takeEvery(authActions.getCurrentUser,FetchCurrentUser)
-    yield call(watchLoginFlow);
+    yield all([
+        call(watchLoginFlow),
+        call(watchGetCurrentUser),
+    ]);
 }

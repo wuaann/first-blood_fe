@@ -3,8 +3,13 @@ import {Header} from "../Header/Header";
 export function Layout() {
     return(
         <>
-            <Header/>
+            <div className="header-layout">
+                <Header/>
+            </div>
+            <div className="outlet">
             <Outlet />
+
+            </div>
         </>
     )
 }
