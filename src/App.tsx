@@ -10,6 +10,9 @@ import {authActions, selectToken} from "./features/auth/authSlice";
 import {useDispatch} from "react-redux";
 import ProjectFeature from "./features/project";
 import Admin from 'features/admin/pages/admin';
+import UserAdmin from 'features/admin/pages/UserAdmin';
+import ProjectAd from 'features/admin/pages/ProjectAdmin';
+import BugAd from 'features/admin/pages/BugsAdmin';
 
 
 function App() {
@@ -31,6 +34,11 @@ function App() {
                                 <Route path="*" element={<ProjectFeature/>}/>
                             </Route>
                             <Route path="/admin" element={<Admin/>}/>
+                            <Route path="/useradmin" element={<UserAdmin/>}/>
+                            <Route path="/projectadmin" element={<ProjectAd/>}/>
+                            <Route path="/bugadmin" element={<BugAd/>}/>
+
+
                         </>
 
                         :

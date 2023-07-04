@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './admin.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import userApi from 'api/userApi';
+import bugApi from 'api/bugApi';
+import projectApi from 'api/projectApi';
 
-export interface HomeProps {
-}
+export interface HomeProps {}
 
 function Admin(props: HomeProps) {
+  const [userCount, setUserCount] = useState(0);
+  const [bugCount, setBugCount] = useState(0);
+  const [projectCount, setProjectCount] = useState(0);
+
+  useEffect(() => {
+    const fetchCounts = async () => {
+      try {
+        const users = await userApi.getAllUser();
+        setUserCount(users.length);
+
+        const bugs = await bugApi.getAllBug();
+        setBugCount(bugs.length);
+
+        const projects = await projectApi.getAllProjects();
+        setProjectCount(projects.length);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCounts();
+  }, []);
     return (
         <>
              <nav>
@@ -17,20 +41,20 @@ function Admin(props: HomeProps) {
 
         <div className="menu-items">
             <ul className="nav-links">
-                <li><a href="#">
+                <li><a href="http://127.0.0.1:3000/admin">
                     <i className="uil uil-estate"></i>
                     <span className="link-name">Dashboard</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="http://127.0.0.1:3000/useradmin">
                     <i className="uil uil-user"></i>
                     <span className="link-name">Users</span>
                     
                 </a></li>
-                <li><a href="#">
+                <li><a href="http://127.0.0.1:3000/projectadmin">
                 <i className="uil uil-clipboard-notes"></i>
                     <span className="link-name">Projects</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="http://127.0.0.1:3000/bugadmin">
                     <i className="uil uil-bug"></i>
                     <span className="link-name">Bugs</span>                 
                 </a></li>
@@ -66,19 +90,19 @@ function Admin(props: HomeProps) {
                         <i className="uil uil-user"></i>
                         <span className="text">Users</span>
                         <span></span>
-                        <span id="user"></span>
+                        <span id="users">{userCount}</span>
                     </div>
                     <div className="box box2">
                         <i className="uil uil-clipboard-notes"></i>
                         <span className="text">Projects</span>
                         <span></span>
-                        <span id="order"></span>
+                        <span id="projects">{projectCount}</span>
                     </div>
                     <div className="box box3">
                         <i className="uil uil-bug"></i>
                         <span className="text">Bugs</span>
                         <span></span>
-                        <span id="room"></span>
+                        <span id="bugs">{bugCount}</span>
                     </div>
                 </div>
             </div>

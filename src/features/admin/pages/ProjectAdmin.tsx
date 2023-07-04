@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './admin.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import projectApi from 'api/projectApi';
+import { Project } from 'models';
 
-export interface HomeProps {
-}
+export interface HomeProps {}
 
-function Admin(props: HomeProps) {
+function ProjectAd(props: HomeProps) {
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await projectApi.getAllProjects();
+        setProjects(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchProjects();
+  }, []);
     return (
         <>
              <nav>
@@ -17,20 +32,20 @@ function Admin(props: HomeProps) {
 
         <div className="menu-items">
             <ul className="nav-links">
-                <li><a href="#">
+                <li><a href="http://127.0.0.1:3000/admin">
                     <i className="uil uil-estate"></i>
                     <span className="link-name">Dashboard</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="http://127.0.0.1:3000/useradmin">
                     <i className="uil uil-user"></i>
                     <span className="link-name">Users</span>
                     
                 </a></li>
-                <li><a href="#">
+                <li><a href="http://127.0.0.1:3000/projectadmin">
                     <i className="uil uil-clipboard-notes"></i>
                     <span className="link-name">Projects</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="http://127.0.0.1:3000/bugadmin">
                     <i className="uil uil-bug"></i>
                     <span className="link-name">Bugs</span>                 
                 </a></li>
@@ -55,11 +70,30 @@ function Admin(props: HomeProps) {
         </div>
 
         <div className="dash-content">
-            
+        <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Description</th>
+                <th>Created By</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {projects.map((project) => (
+                <tr key={project.id}>
+                  <td>{project.project_name}</td>
+                  <td>{project.description}</td>
+                  <td>{project.create_by}</td>
+                  <td>{project.quantity}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
     </section>
         </>
     );
 }
 
-export default Admin;
+export default ProjectAd;

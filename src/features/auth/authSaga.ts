@@ -43,7 +43,8 @@ function* watchLoginFlow() {
 }
 
 
+
 export function* authSaga() {
-    yield takeEvery(authActions.getCurrentUser,FetchCurrentUser)
     yield call(watchLoginFlow);
+    yield takeEvery(authActions.getCurrentUser,FetchCurrentUser)
 }
