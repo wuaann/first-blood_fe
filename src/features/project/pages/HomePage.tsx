@@ -15,7 +15,6 @@ const overrideCSS: CSSProperties ={
     width: "100%" ,
     margin: "0 auto",
     borderColor: "red",
-    marginTop: "8px",
     color: 'rgba(54, 147, 214, 1)',
     position: "absolute",
     // top: "0"

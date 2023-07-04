@@ -22,7 +22,7 @@ const ProjectTable = ({projectList, onEdit, onRemove, onNavigate}: ProjectTableP
 
     useEffect(() => {
         const checkIsAdmin = (currentUser: User) => {
-            if (currentUser?.role === 2) {
+            if (currentUser?.role === "2") {
                 setIsAdmin(true)
             }
         }
