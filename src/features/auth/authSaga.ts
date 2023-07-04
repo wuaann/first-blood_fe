@@ -51,7 +51,9 @@ function* watchLoginFlow() {
 }
 
 
+
 export function* authSaga() {
+
     yield all([
         call(watchLoginFlow),
         call(watchGetCurrentUser),

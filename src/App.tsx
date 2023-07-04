@@ -8,7 +8,10 @@ import {Layout} from "./components/common/Layout/Layout";
 import Forgot from "./features/auth/pages/Forgot";
 import {authActions, selectCurrentUser, selectToken} from "./features/auth/authSlice";
 import ProjectFeature from "./features/project";
-
+import Admin from 'features/admin/pages/admin';
+import UserAdmin from 'features/admin/pages/UserAdmin';
+import ProjectAd from 'features/admin/pages/ProjectAdmin';
+import BugAd from 'features/admin/pages/BugsAdmin';
 
 
 function App() {
@@ -32,6 +35,12 @@ function App() {
                                 <Route index element={<ProjectFeature/>}/>
                                 <Route path="*" element={<ProjectFeature/>}/>
                             </Route>
+                            <Route path="/admin" element={<Admin/>}/>
+                            <Route path="/useradmin" element={<UserAdmin/>}/>
+                            <Route path="/projectadmin" element={<ProjectAd/>}/>
+                            <Route path="/bugadmin" element={<BugAd/>}/>
+
+
                         </>
 
                         :

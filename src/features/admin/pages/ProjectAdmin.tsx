@@ -1,34 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import './admin.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import userApi from 'api/userApi';
-import bugApi from 'api/bugApi';
 import projectApi from 'api/projectApi';
+import { Project } from 'models';
 
 export interface HomeProps {}
 
-function Admin(props: HomeProps) {
-  const [userCount, setUserCount] = useState(0);
-  const [bugCount, setBugCount] = useState(0);
-  const [projectCount, setProjectCount] = useState(0);
+function ProjectAd(props: HomeProps) {
+  const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    const fetchCounts = async () => {
+    const fetchProjects = async () => {
       try {
-        const users = await userApi.getAllUser();
-        setUserCount(users.length);
-
-        const bugs = await bugApi.getAllBug();
-        setBugCount(bugs.length);
-
-        const projects = await projectApi.getAllProjects();
-        setProjectCount(projects.length);
+        const response = await projectApi.getAllProjects();
+        setProjects(response);
       } catch (error) {
         console.log(error);
       }
     };
 
-    fetchCounts();
+    fetchProjects();
   }, []);
     return (
         <>
@@ -51,7 +42,7 @@ function Admin(props: HomeProps) {
                     
                 </a></li>
                 <li><a href="http://127.0.0.1:3000/projectadmin">
-                <i className="uil uil-clipboard-notes"></i>
+                    <i className="uil uil-clipboard-notes"></i>
                     <span className="link-name">Projects</span>
                 </a></li>
                 <li><a href="http://127.0.0.1:3000/bugadmin">
@@ -79,37 +70,30 @@ function Admin(props: HomeProps) {
         </div>
 
         <div className="dash-content">
-            <div className="overview">
-                <div className="title">
-                    <i className="uil uil-tachometer-fast-alt"></i>
-                    <span className="text">Dashboard</span>
-                </div>
-
-                <div className="boxes">
-                    <div className="box box1">
-                        <i className="uil uil-user"></i>
-                        <span className="text">Users</span>
-                        <span></span>
-                        <span id="users">{userCount}</span>
-                    </div>
-                    <div className="box box2">
-                        <i className="uil uil-clipboard-notes"></i>
-                        <span className="text">Projects</span>
-                        <span></span>
-                        <span id="projects">{projectCount}</span>
-                    </div>
-                    <div className="box box3">
-                        <i className="uil uil-bug"></i>
-                        <span className="text">Bugs</span>
-                        <span></span>
-                        <span id="bugs">{bugCount}</span>
-                    </div>
-                </div>
-            </div>
+        <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Description</th>
+                <th>Created By</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {projects.map((project) => (
+                <tr key={project.id}>
+                  <td>{project.project_name}</td>
+                  <td>{project.description}</td>
+                  <td>{project.create_by}</td>
+                  <td>{project.quantity}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
     </section>
         </>
     );
 }
 
-export default Admin;
+export default ProjectAd;

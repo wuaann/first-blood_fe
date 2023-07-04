@@ -1,34 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import './admin.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import userApi from 'api/userApi';
 import bugApi from 'api/bugApi';
-import projectApi from 'api/projectApi';
+import { Bug } from 'models/bugs';
 
 export interface HomeProps {}
 
-function Admin(props: HomeProps) {
-  const [userCount, setUserCount] = useState(0);
-  const [bugCount, setBugCount] = useState(0);
-  const [projectCount, setProjectCount] = useState(0);
+function BugAd(props: HomeProps) {
+  const [bugs, setBugs] = useState<Bug[]>([]);
 
   useEffect(() => {
-    const fetchCounts = async () => {
+    const fetchBugs = async () => {
       try {
-        const users = await userApi.getAllUser();
-        setUserCount(users.length);
-
-        const bugs = await bugApi.getAllBug();
-        setBugCount(bugs.length);
-
-        const projects = await projectApi.getAllProjects();
-        setProjectCount(projects.length);
+        const response = await bugApi.getAllBug();
+        setBugs(response);
       } catch (error) {
         console.log(error);
       }
     };
 
-    fetchCounts();
+    fetchBugs();
   }, []);
     return (
         <>
@@ -47,11 +38,10 @@ function Admin(props: HomeProps) {
                 </a></li>
                 <li><a href="http://127.0.0.1:3000/useradmin">
                     <i className="uil uil-user"></i>
-                    <span className="link-name">Users</span>
-                    
+                    <span className="link-name">Users</span>      
                 </a></li>
                 <li><a href="http://127.0.0.1:3000/projectadmin">
-                <i className="uil uil-clipboard-notes"></i>
+                    <i className="uil uil-clipboard-notes"></i>
                     <span className="link-name">Projects</span>
                 </a></li>
                 <li><a href="http://127.0.0.1:3000/bugadmin">
@@ -79,37 +69,38 @@ function Admin(props: HomeProps) {
         </div>
 
         <div className="dash-content">
-            <div className="overview">
-                <div className="title">
-                    <i className="uil uil-tachometer-fast-alt"></i>
-                    <span className="text">Dashboard</span>
-                </div>
-
-                <div className="boxes">
-                    <div className="box box1">
-                        <i className="uil uil-user"></i>
-                        <span className="text">Users</span>
-                        <span></span>
-                        <span id="users">{userCount}</span>
-                    </div>
-                    <div className="box box2">
-                        <i className="uil uil-clipboard-notes"></i>
-                        <span className="text">Projects</span>
-                        <span></span>
-                        <span id="projects">{projectCount}</span>
-                    </div>
-                    <div className="box box3">
-                        <i className="uil uil-bug"></i>
-                        <span className="text">Bugs</span>
-                        <span></span>
-                        <span id="bugs">{bugCount}</span>
-                    </div>
-                </div>
-            </div>
+        <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Category Name</th>
+                <th>Status Name</th>
+                <th>Priority Name</th>
+                <th>Title </th>
+                <th>Description</th>
+                <th>Assigned To</th>
+                <th>Reporter By</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bugs.map((bug) => (
+                <tr key={bug.id}>
+                  <td>{bug.project_name}</td>
+                  <td>{bug.category_name}</td>
+                  <td>{bug.status_name}</td>
+                  <td>{bug.priority_name}</td>
+                  <td>{bug.title}</td>
+                  <td>{bug.description}</td>
+                  <td>{bug.assignee_name}</td>
+                  <td>{bug.reporter_name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
     </section>
         </>
     );
 }
 
-export default Admin;
+export default BugAd;
