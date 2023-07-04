@@ -4,16 +4,14 @@ import CreateProject from "./pages/CreateProject";
 import HomePage from "./pages/HomePage";
 import BugFeature from "../bug";
 
-export default function ProjectFeature(){
+export default function ProjectFeature() {
 
-    return(
+    return (
 
         <Routes>
-
-                <Route index  path={'/'} element={<HomePage/>}/>
-                <Route path={'/project/add'} element={<CreateProject/>}/>
-                <Route path={'/project/:projectId'} element={<CreateProject/>}/>
-                <Route path={'/project/:projectId/bug'} element={<BugFeature/>}/>
-        </Routes>
-    )
+            <Route index path={'/'} element={<HomePage/>}/>
+            <Route path={'/project/add'} element={<CreateProject/>}/>
+            <Route path={'/project/:projectId'} element={<CreateProject/>}/>
+            <Route path={'/project/:projectId/bug'} element={<BugFeature/>}/>
+        </Routes>)
 }
