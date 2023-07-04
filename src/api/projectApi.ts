@@ -1,5 +1,5 @@
 import axiosClient from "./axiosClient";
-import { Project} from "../models";
+import {Project, ProjectAdmin} from "../models";
 
 
 const projectApi = {
@@ -7,7 +7,7 @@ const projectApi = {
         const url = '/project_byuser';
         return axiosClient.get(url);
     },
-    getAllProjects: () : Promise<Project[]> => {
+    getAllProjects: () : Promise<ProjectAdmin[]> => {
         const url = '/projects';
         return axiosClient.get(url);
     }

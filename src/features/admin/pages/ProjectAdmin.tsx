@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './admin.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import projectApi from 'api/projectApi';
-import { Project } from 'models';
+import {Project, ProjectAdmin} from 'models';
 
 export interface HomeProps {}
 
 function ProjectAd(props: HomeProps) {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<ProjectAdmin[]>([]);
 
   useEffect(() => {
     const fetchProjects = async () => {
