@@ -1,4 +1,4 @@
-import {authActions, LoginPayload, selectCurrentUser} from "./authSlice";
+import {authActions, LoginPayload} from "./authSlice";
 import {PayloadAction} from "@reduxjs/toolkit";
 import {put, take,all, fork, call, takeLatest} from 'redux-saga/effects';
 import authApi from "../../api/authApi";
@@ -22,6 +22,7 @@ function* handleLogin(payload: LoginPayload) {
         }
         localStorage.setItem('accessToken', data.accessToken);
         yield put(authActions.getCurrentUser());
+
     } catch (error: any) {
         yield put(authActions.loginFailed(error.message));
     }

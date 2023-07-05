@@ -1,6 +1,6 @@
 // @flow
 
-export function CreateUsers() {
+export function UpdateUsers() {
     return (
         <div>
 
