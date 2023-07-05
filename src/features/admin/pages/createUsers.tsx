@@ -29,8 +29,8 @@ const CreateUserComponent: React.FC<CreateUserProps> = () => {
       // Call the createUser API
       const response = await userApi.createUser(newUser);
       console.log('API Response:', response);
-      
-      
+
+
     } catch (error) {
       // Handle error if the createUser API request fails
       console.log('Failed to create user:', error);

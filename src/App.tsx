@@ -19,7 +19,6 @@ import CreateUser from 'features/admin/pages/createUsers';
 function App() {
     const user =useAppSelector(selectCurrentUser);
     const dispatch = useAppDispatch();
-
         useEffect(() => {
             if(!user){
             dispatch(authActions.getCurrentUser())
