@@ -17,7 +17,6 @@ import BugAd from 'features/admin/pages/BugsAdmin';
 function App() {
     const user =useAppSelector(selectCurrentUser);
     const dispatch = useAppDispatch();
-
         useEffect(() => {
             if(!user){
             dispatch(authActions.getCurrentUser())
