@@ -1,6 +1,6 @@
 import React from "react";
 import {SideBar} from "./components/SideBar";
-import {Route, Routes, useParams, useLocation} from "react-router-dom";
+import {  useParams,  Outlet} from "react-router-dom";
 
 import {BugList} from "./pages/BugList";
 import {CreateBug} from "./pages/CreateBug";

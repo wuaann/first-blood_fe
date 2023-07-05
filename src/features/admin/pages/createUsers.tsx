@@ -140,3 +140,13 @@ const CreateUserComponent: React.FC<CreateUserProps> = () => {
 };
 
 export default CreateUserComponent;
+
+// @flow
+
+export function CreateUsers() {
+    return (
+        <div>
+
+            </div>
+    );
+};
