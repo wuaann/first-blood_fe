@@ -3,7 +3,7 @@ export interface Project{
         project_name: string,
         description: string,
         create_by: string,
-        quantity:number,
+        participants:number,
         create_at: Date,
         update_at?: Date,
 }
