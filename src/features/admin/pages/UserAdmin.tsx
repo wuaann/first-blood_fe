@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './admin.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import userApi from 'api/userApi';
 import { User } from 'models';
 
@@ -99,7 +98,7 @@ function UserAdmin(props: HomeProps) {
                     <td>{user.email}</td>
                     <td>{user.phone}</td>
                     <td>{user.address}</td>
-                    <td>{getUserRole(parseInt(user.role))}</td>
+                    <td>{getUserRole(user.role)}</td>
                     <td style={{display:'flex'}}>    
                     <button className='btn btn-warning'>Edit</button>
                     <button className='btn btn-danger'>Delete</button>

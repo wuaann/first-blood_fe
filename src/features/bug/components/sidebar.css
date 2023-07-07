@@ -26,15 +26,22 @@
     margin: 0;
 }
 
-.side-bar-icoon {
+.side-bar-icon {
+    color: #344563;
+
     cursor: pointer;
     padding: 10px;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
+.side-bar-icon div{
+    list-style-type: none;
 
-.side-bar-icoon:hover {
+}
+
+.side-bar-icon:hover {
     background-color: #f1f1f1;
+    color: #0052CC;
 }
 
 .item-info {
@@ -51,6 +58,8 @@
 }
 
 .item-name {
+    text-decoration: none;
+    list-style-type: none;
     padding: 5px;
     border-radius: 5px;
     font-size: 14px;
@@ -58,4 +67,7 @@
 
 .item-icon:hover + .item-name {
     display: block;
+}
+.active{
+    color: #0052CC !important;
 }

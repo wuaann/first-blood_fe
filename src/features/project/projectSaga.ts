@@ -1,7 +1,9 @@
 import {call, put, takeLatest} from "redux-saga/effects";
 import {projectActions} from "./projectSlice";
-import {Project} from "../../models";
+import {Project, User} from "../../models";
 import projectApi from "../../api/projectApi";
+import UserApi from "../../api/userApi";
+import {PayloadAction} from "@reduxjs/toolkit";
 
 
 
@@ -15,8 +17,19 @@ import projectApi from "../../api/projectApi";
     }
  }
 
+ function* fetchMemberList(action:PayloadAction<string>){
+    try {
+        const res: User[] = yield call(UserApi.getMember,action.payload)
+        yield put(projectActions.setMember(res))
+    }catch (e) {
+        console.log('failed to fetch project list by current user')
+        yield put((projectActions.fetchProjectListFailed()))
+    }
+ }
+
 
 
 export default function* projectSaga(){
     yield takeLatest(projectActions.fetchProjectList, fetchProjectList);
+    yield takeLatest(projectActions.fetchMember, fetchMemberList);
 }
