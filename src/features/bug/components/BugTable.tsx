@@ -1,14 +1,15 @@
-import React, {ChangeEvent} from "react";
+import React, { ChangeEvent } from "react";
+import 'bootstrap/dist/css/bootstrap.css';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import {BugByProject} from "../../../models/bugs";
+import { BugByProject } from "../../../models/bugs";
 import './bugTable.css';
 
-import {useState} from 'react';
-import {Button} from "@mui/material";
+import { useState } from 'react';
+import { Button } from "@mui/material";
 
 export interface BugTableProp {
     bugs: BugByProject[],
@@ -16,7 +17,7 @@ export interface BugTableProp {
     onClickSubmit: (BugPatch: BugByProject) => void
 }
 
-function BugTable({bugs, onChange}: BugTableProp) {
+function BugTable({ bugs, onChange }: BugTableProp) {
     const [selectedStatuses, setSelectedStatuses] = useState<any>('');
 
     const handleActionButtonClick = (bugId: any) => {
@@ -27,7 +28,7 @@ function BugTable({bugs, onChange}: BugTableProp) {
 
     const [hoveredRow, setHoveredRow] = useState(null);
 
-    const handleMouseEnter = (id:any) => {
+    const handleMouseEnter = (id: any) => {
         setHoveredRow(id);
     };
 
@@ -36,16 +37,18 @@ function BugTable({bugs, onChange}: BugTableProp) {
     };
 
 
+
     return (
-        <Table>
+        <Table style={{ marginTop: '10px' }}>
             <TableHead>
-                <TableRow>
+                <TableRow style={{ background: '#e0e0e0', borderRadius: '3px' }}>
                     <TableCell>STT</TableCell>
                     <TableCell>Bug ID</TableCell>
                     <TableCell>Category Name</TableCell>
                     <TableCell>Status Name</TableCell>
-                    <TableCell>Priority Name</TableCell>
+                    
                     <TableCell>Reporter</TableCell>
+                    <TableCell>Priority Name</TableCell>
                     <TableCell>Assigned</TableCell>
                     <TableCell>Action</TableCell>
                 </TableRow>
@@ -64,12 +67,21 @@ function BugTable({bugs, onChange}: BugTableProp) {
                         <TableCell>{bug.id}</TableCell>
                         <TableCell>{bug.id}</TableCell>
                         <TableCell>{bug.category_name}</TableCell>
-                        <TableCell>{bug.status_name}</TableCell>
-                        <TableCell>{bug.priority_name}</TableCell>
+                        <TableCell >
+                            <button className={bug.status_name} style={{ backgroundColor: '#007bff', 
+                            color: '#fff', borderRadius: '5px', width: '100px', height: '40px', border: 'none' }}>
+                                {bug.status_name}
+                            </button>
+                        </TableCell>
                         <TableCell>{bug.reporter_email}</TableCell>
+                        <TableCell>
+                            <button  className={bug.priority_name} >{bug.priority_name}</button>
+                            
+                        </TableCell>
                         <TableCell>{bug.assigned_email}</TableCell>
                         <TableCell>
                             <Button
+                                style={{ color: 'green', width: '20px' }}
                                 onClick={() => {
                                     handleActionButtonClick(bug.id);
                                     setSelectedStatuses('');
