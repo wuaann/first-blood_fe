@@ -33,9 +33,7 @@ function BugTable({bugs, onChange}: BugTableProp) {
 
     const handleShow = () => {
         setShow(!show)
-       if (bug?.id){
-           dispatch(bugActions.getSteps(bug?.id))
-       }
+
     }
 
     const handleMouseLeave = () => {
@@ -69,7 +67,6 @@ function BugTable({bugs, onChange}: BugTableProp) {
                           }}
                           onClick={() => {
                               handleShow();
-                              console.log(show)
                               setBug(bug)
                           }}
                           onMouseEnter={() => handleMouseEnter(bug.id)}
@@ -98,7 +95,7 @@ function BugTable({bugs, onChange}: BugTableProp) {
                   ))}
               </TableBody>
           </Table>
-          {show && <BugDetail  onShow={handleShow} bug={bug}/>}
+          {show && <BugDetail onShow={handleShow} bug={bug}/>}
       </>
     );
 }
