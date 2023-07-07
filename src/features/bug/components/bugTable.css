@@ -58,3 +58,51 @@
     background-color: #ccc;
     color: black;
 }
+.Open{
+    background-color: #dc3545 !important;
+}
+
+.Resolved{
+    background-color: #ffc107 !important;
+  
+}
+.Closed{
+    background-color: #28a745 !important; /* Mã màu thành công của Bootstrap */
+}
+
+span{
+    width: auto;
+    height: 20px;
+}
+.Low{
+    background-color: #28a745; /* Mã màu thành công của Bootstrap */
+    color: #fff; 
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    border: none;
+}
+.Medium{
+    background-color: #007bff;
+    color: #fff; 
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    border: none;
+}
+.High{
+    background-color: #ffc107;
+    color: #fff; 
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    border: none;
+}
+.Urgent{
+    background-color: #dc3545;
+    color: #fff; 
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    border: none;
+}

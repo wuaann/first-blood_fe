@@ -46,17 +46,17 @@ function BugFilter({onChange,project_name ,memberList, onSelectAssignee, onSearc
     return (
         <>
             <div className="bug">
-                <div>
+                <div style={{marginTop:'6px'}}>
                     <h1>{project_name?? 'error'}</h1>
                 </div>
                 <Link to={'add'}>
-                    <button className="creactbug">add Bug</button>
+                    <button className="creactbug">Add Bug</button>
                 </Link>
             </div>
 
             <div className="filter-container">
                 <div className="filter-search">
-                    <input onChange={handleSearchChange} type="text" id="bugIdInput" placeholder="Bug ID"/>
+                    <input onChange={handleSearchChange} type="text" id="bugIdInput" placeholder="Search"/>
 
                 </div>
                 <div className="filter-item">
@@ -81,9 +81,8 @@ function BugFilter({onChange,project_name ,memberList, onSelectAssignee, onSearc
                     }
                             className={activeButton === 'button3' ?
                                 'button search-button active' :
-                                'button search-button '} id="statusSelect">
-                        <option value=''>select reporter</option>
-
+                                'button search-button'} id="statusSelect">
+                        <option value=''>Select reporter</option>
                         {memberList?.map((member) => (
                             <option key={member.id} value={member.email}>{member.email}</option>
                         ))
@@ -93,8 +92,8 @@ function BugFilter({onChange,project_name ,memberList, onSelectAssignee, onSearc
                     <select onChange={handleAssignChange} onClick={() => handleButtonClick('button4')}
                             className={activeButton === 'button4' ?
                                 'button search-button active' :
-                                'button search-button '} id="statusSelect">
-                        <option value=''>select assign</option>
+                                'button search-button dropdown'} id="statusSelect">
+                        <option className='option' value=''>Select assign</option>
 
                         {memberList?.map((member) => (
                             <option key={member.id} value={member.email}>{member.email}</option>
