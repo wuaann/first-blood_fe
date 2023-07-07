@@ -129,7 +129,7 @@ function UserAdmin(props: HomeProps) {
                     <td>{user.name}</td>
                     <td>{user.phone}</td>
                     <td>{user.address}</td>
-                   
+
                     <td style={{ display: 'flex' }}>
                       <button className="btn btn-warning">Edit</button>
                       <button
