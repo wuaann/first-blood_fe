@@ -1,4 +1,4 @@
-import React, {ChangeEvent, CSSProperties, useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import './bugfilter.css'
 import {Link} from "react-router-dom";
 import {User} from "../../../models";
