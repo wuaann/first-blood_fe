@@ -3,10 +3,10 @@ import BugTable from "../components/BugTable";
 import {useAppDispatch, useAppSelector} from "../../../app/hooks";
 import {bugActions, selectBugAll, selectBugLoading} from "../bugSlice";
 import {useParams} from "react-router-dom";
-import {BugParams} from "models/bugs";
 import BugFilter from  '../components/BugFilter'
 import {projectActions, selectMember} from "../../project/projectSlice";
 import {PropagateLoader } from "react-spinners";
+import {BugByProject} from "../../../models/bugs";
 
 
 const overrideCSS: CSSProperties ={
@@ -66,11 +66,20 @@ function Home() {
     const handleOnClick= (name:string)=>{
         dispatch(bugActions.setFilter({id:projectId, param:{status:name}}))
     }
+
+
+    const handleOnSubmit = (BugPatch: BugByProject) => {
+        console.log(BugPatch);
+    }
+
+
+
+
     return (
         <div>
             <BugFilter memberList={Member} project_name={bugList[0]?.project_name} onChange={handleOnClick} onSelectAssignee={handleSelectAssignee} onSearchChange={handleSearchChange} />
             <PropagateLoader color={"hsla(243, 67%, 53%, 1)"} loading={loading} cssOverride={overrideCSS}  />
-            <BugTable  bugs={bugList}/>
+            <BugTable  onClickSubmit={handleOnSubmit} bugs={bugList}/>
         </div>
     );
 }
