@@ -1,5 +1,5 @@
 .bug-wrap{
-    position: fixed;
+    /*position: fixed;*/
     top: 54px;
     width: 100%;
     display: grid;
@@ -27,4 +27,8 @@
 
 .status-closed {
     background-color: gray;
+}
+.bug-content{
+    position: static;
+    min-height: 100vh;
 }

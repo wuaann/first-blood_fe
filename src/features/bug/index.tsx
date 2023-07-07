@@ -6,7 +6,8 @@ import {  useParams,  Outlet} from "react-router-dom";
 
 export default function BugFeature() {
     const {projectId} = useParams<{ projectId: string }>();
-    return (<div className="bug-wrap">
+    return (
+        <div className="bug-wrap">
             <div className={'sidebar'}>
                 <SideBar projectId={projectId}/>
             </div>
