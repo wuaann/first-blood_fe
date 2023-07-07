@@ -14,6 +14,10 @@ const userApi = {
     createUser: () : Promise<User[]> => {
         const url = '/users';
         return axiosClient.put(url);
+    },
+    getMember: (id:string) : Promise<User[]> => {
+        const url = `project/member/${id}`;
+        return axiosClient.get(url);
     }
 }
 export default userApi

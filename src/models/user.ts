@@ -4,7 +4,7 @@ export interface User{
     name: string,
     email: string,
 
-    role: string,
+    role: number,
     phone:string,
     address:string,
 

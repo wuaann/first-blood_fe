@@ -2,6 +2,7 @@ import {authActions, LoginPayload} from "./authSlice";
 import {PayloadAction} from "@reduxjs/toolkit";
 import {put, take,all, fork, call, takeLatest} from 'redux-saga/effects';
 import authApi from "../../api/authApi";
+import { useNavigate } from 'react-router-dom';
 import { TokenResponse, User} from "../../models";
 import userApi from "../../api/userApi";
 
@@ -27,7 +28,6 @@ function* handleLogin(payload: LoginPayload) {
         yield put(authActions.loginFailed(error.message));
     }
 }
-
 function* handleLogout() {
     localStorage.removeItem('accessToken');
     yield put(authActions.logout)

@@ -23,6 +23,7 @@ function App() {
             }
         },[dispatch,user])
     const token = useAppSelector(selectToken);
+
     return (
         <>
             <Routes>
@@ -32,14 +33,13 @@ function App() {
                         <>
                             <Route path={'/'} element={<Layout/>}>
                                 <Route index element={<ProjectFeature/>}/>
-                                <Route path="*" element={<ProjectFeature/>}/>
+                                <Route path={'*'} element={<ProjectFeature/>}/>
                             </Route>
+
                             <Route path="/admin" element={<Admin/>}/>
                             <Route path="/useradmin" element={<UserAdmin/>}/>
                             <Route path="/projectadmin" element={<ProjectAd/>}/>
                             <Route path="/bugadmin" element={<BugAd/>}/>
-
-
                         </>
 
                         :
