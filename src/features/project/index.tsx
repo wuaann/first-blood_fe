@@ -6,6 +6,8 @@ import BugFeature from "../bug";
 import {CreateBug} from "../bug/pages/CreateBug";
 import '../bug/components/buglist.css'
 import Home from "../bug/pages/Home";
+import AddBug from "../bug/components/AddBug";
+import BugDetail from "../bug/components/BugDetail";
 
 export default function ProjectFeature() {
 
@@ -19,6 +21,8 @@ export default function ProjectFeature() {
             <Route path={'/project/:projectId/bug'} element={<BugFeature/>}>
                 <Route index element={<Home />}/>
                 <Route path='done' element={<CreateBug/>}/>
+                <Route path='add' element={<AddBug/>}/>
+
             </Route>
         </Routes>)
 }
