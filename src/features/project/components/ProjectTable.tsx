@@ -28,7 +28,6 @@ const ProjectTable = ({projectList, onEdit, onRemove, onNavigate}: ProjectTableP
         }
         checkIsAdmin(currentUser);
     }, [currentUser])
-    console.log(isAdmin, currentUser)
 
 
     return (<>

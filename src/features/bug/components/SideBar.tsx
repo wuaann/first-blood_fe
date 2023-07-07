@@ -10,7 +10,7 @@ interface sideBarProps {
 
 }
 export function SideBar({projectId} : sideBarProps) {
-    const [activeButton, setActiveButton] = useState('');
+    const [activeButton, setActiveButton] = useState('button1');
 
     const handleButtonClick = (buttonId:string) => {
         setActiveButton(buttonId);
@@ -37,6 +37,15 @@ export function SideBar({projectId} : sideBarProps) {
                              <div  className={activeButton === 'button1' ? 'active item-info'  : 'item-info'} >
                                  <div className="item-icon"><FontAwesomeIcon icon={faBug} /></div>
                                  <div className="item-name" >Bug</div>
+                             </div>
+                         </li>
+                     </Link>
+                     <Link  to={`/project/${projectId}/bug`}
+                            onClick={() => handleButtonClick('button2')}>
+                         <li className="side-bar-icon">
+                             <div  className={activeButton === 'button2' ? 'active item-info'  : 'item-info'} >
+                                 <div className="item-icon"><FontAwesomeIcon icon={faBug} /></div>
+                                 <div className="item-name" >Baug</div>
                              </div>
                          </li>
                      </Link>
