@@ -69,5 +69,5 @@
     display: block;
 }
 .active{
-    color: #0052CC;
+    color: #0052CC !important;
 }

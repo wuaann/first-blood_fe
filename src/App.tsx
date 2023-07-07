@@ -12,8 +12,6 @@ import Admin from 'features/admin/pages/admin';
 import UserAdmin from 'features/admin/pages/UserAdmin';
 import ProjectAd from 'features/admin/pages/ProjectAdmin';
 import BugAd from 'features/admin/pages/BugsAdmin';
-import CreateUser from 'features/admin/pages/createUsers';
-
 
 
 function App() {
@@ -25,6 +23,7 @@ function App() {
             }
         },[dispatch,user])
     const token = useAppSelector(selectToken);
+
     return (
         <>
             <Routes>
@@ -34,17 +33,13 @@ function App() {
                         <>
                             <Route path={'/'} element={<Layout/>}>
                                 <Route index element={<ProjectFeature/>}/>
-                                <Route path="*" element={<ProjectFeature/>}/>
+                                <Route path={'*'} element={<ProjectFeature/>}/>
                             </Route>
+
                             <Route path="/admin" element={<Admin/>}/>
                             <Route path="/useradmin" element={<UserAdmin/>}/>
                             <Route path="/projectadmin" element={<ProjectAd/>}/>
                             <Route path="/bugadmin" element={<BugAd/>}/>
-                            <Route path="/createuser" element={<CreateUser/>}/>
-
-
-
-
                         </>
 
                         :

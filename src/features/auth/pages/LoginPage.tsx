@@ -4,7 +4,7 @@ import {faUser, faLock, faEye, faEyeSlash} from '@fortawesome/free-solid-svg-ico
 import {useAppDispatch, useAppSelector} from "../../../app/hooks";
 import {authActions, selectLogging} from "../authSlice";
 import './login.css'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 
 export interface LoginPageProps {
@@ -14,6 +14,7 @@ function LoginPage(props: LoginPageProps) {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
     const togglePasswordVisibility = () => {
@@ -21,10 +22,13 @@ function LoginPage(props: LoginPageProps) {
     };
     const logging = useAppSelector(selectLogging);
     const handleLoginClick = () => {
+
         dispatch(authActions.login({
             email: email,
             password: password
-        }))
+        }));
+
+        navigate('/')
 
     }
     return (
