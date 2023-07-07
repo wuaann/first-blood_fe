@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {BugByProject, Steps} from "../../../models/bugs";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,17 +6,22 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import "./bugDetail.css"
 import {Button} from "@mui/material";
-import {useAppSelector} from "../../../app/hooks";
-import {selectSteps} from "../bugSlice";
+import {useAppDispatch, useAppSelector} from "../../../app/hooks";
+import {bugActions, selectSteps} from "../bugSlice";
 
 interface BugDetailProps {
     bug?: BugByProject
     onShow?: () => void
 }
 
-const BugDetail: React.FC<BugDetailProps> = ({bug, onShow,}) => {
+const BugDetail: React.FC<BugDetailProps> = ({bug, onShow}) => {
     const steps = useAppSelector(selectSteps);
-    console.log(steps)
+    const dispatch =useAppDispatch()
+    useEffect(() =>{
+        if (bug?.id){
+            dispatch(bugActions.getSteps(bug.id))
+        }
+    },[dispatch,bug?.id])
 
 
     return (
