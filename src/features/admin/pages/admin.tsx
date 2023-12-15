@@ -119,7 +119,7 @@ function Admin(props: HomeProps) {
         <>
              <nav>
         <div className="logo-name">
-            <div className="logo-image">
+            <div className="logo-image">               
             </div>
             <span className="logo_name">FIB</span>
         </div>
@@ -133,7 +133,7 @@ function Admin(props: HomeProps) {
                 <li><a href="http://127.0.0.1:3000/useradmin">
                     <i className="uil uil-user"></i>
                     <span className="link-name">Users</span>
-
+                    
                 </a></li>
                 <li><a href="http://127.0.0.1:3000/projectadmin">
                 <i className="uil uil-clipboard-notes"></i>
@@ -141,14 +141,14 @@ function Admin(props: HomeProps) {
                 </a></li>
                 <li><a href="http://127.0.0.1:3000/bugadmin">
                     <i className="uil uil-bug"></i>
-                    <span className="link-name">Bugs</span>
+                    <span className="link-name">Bugs</span>                 
                 </a></li>
                 <li><a href="#">
                     <i className="uil uil-setting"></i>
                     <span className="link-name">Setting</span>
                 </a></li>
-             </ul>
-
+             </ul> 
+                      
         </div>
     </nav>
 
@@ -160,7 +160,7 @@ function Admin(props: HomeProps) {
                 <i className="uil uil-search"></i>
                 <input type="text" placeholder="Search here..." />
             </div>
-
+            
         </div>
 
         <div className="dash-content">
