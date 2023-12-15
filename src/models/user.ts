@@ -12,9 +12,3 @@ export interface User{
     update_at?: string,
 
 }
-
-export interface CreateUser {
-    email: string;
-    password: string;
-    role: number;
-  }

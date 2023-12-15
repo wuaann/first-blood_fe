@@ -1,0 +1,34 @@
+.bug-wrap{
+    /*position: fixed;*/
+    top: 54px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10%  86%;
+}
+
+
+.sidebar{
+    width: 100% ;
+    background-color: white;
+
+}
+
+.status-pending {
+    background-color: yellow;
+}
+
+.status-in-progress {
+    background-color: orange;
+}
+
+.status-resolved {
+    background-color: green;
+}
+
+.status-closed {
+    background-color: gray;
+}
+.bug-content{
+    position: static;
+    min-height: 100vh;
+}
