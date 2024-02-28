@@ -1,9 +1,10 @@
 import {all, call, put, take, takeLatest} from "redux-saga/effects";
 import {bugActions, BugPayLoad} from "./bugSlice";
 import {PayloadAction} from "@reduxjs/toolkit";
-import { BugByProject, BugParams} from "../../models/bugs";
+import {BugByProject, BugParams, Steps} from "../../models/bugs";
 import bugApi from "../../api/bugApi";
 import {debounce} from "redux-saga/effects";
+import BugApi from "../../api/bugApi";
 
 
 function* fetchStatistics() {
@@ -55,13 +56,22 @@ function* fetchBugData(action: PayloadAction<BugParams>) {
 function* handleSearchDebouce(action:PayloadAction<BugParams>) {
     yield put(bugActions.setBugFilter(action.payload));
     yield call(fetchBugAll, action);
-    // yield put(bugActions.setBugFilter(action.payload))
 }
 
+function* handleSetSteps(action:PayloadAction<number>) {
+   try {
+       const res: Steps[] = yield call(BugApi.getSteps,action.payload);
+       yield put(bugActions.setSteps(res))
+   }catch (e){
+       yield put(bugActions.fetchDataFail)
+   }
+
+}
 
 export default function* bugSaga() {
     yield takeLatest(bugActions.fetchData.type, fetchBugData);
     yield takeLatest(bugActions.setFilter.type, handleSearchDebouce);
+    yield takeLatest(bugActions.getSteps.type, handleSetSteps);
 
     yield debounce(500,bugActions.setBugFilterWithDebouce.type, handleSearchDebouce)
 }

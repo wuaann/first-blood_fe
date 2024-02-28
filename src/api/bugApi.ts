@@ -1,5 +1,5 @@
 import axiosClient from "./axiosClient";
-import {Bug, BugByProject, BugParams} from "models/bugs";
+import {Bug, BugByProject, BugParams, Steps} from "models/bugs";
 
 const bugApi = {
     getAllBug: () : Promise<Bug[]> => {
@@ -11,6 +11,10 @@ const bugApi = {
         return axiosClient.get(url,{
             params: param.param
         });
+    },
+    getSteps: (id:number) : Promise<Steps[]> => {
+        let url = `steps/${id}`;
+        return axiosClient.get(url);
     },
 
 

@@ -1,10 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import { BugByProject} from "../../models/bugs";
+import {BugByProject, Steps} from "../../models/bugs";
 import {RootState} from "../../app/store";
 import { BugParams} from "../../models/bugs";
 import {User} from "../../models";
 import {Simulate} from "react-dom/test-utils";
-import load = Simulate.load;
 
 export interface BugPayLoad {
     project_id?: string
@@ -25,6 +24,7 @@ export interface BugState {
     BugAll: BugByProject[],
     BugFilter: BugParams
     member?:User[]
+    steps?:Steps[]
 
 }
 
@@ -42,7 +42,8 @@ const initialState: BugState = {
         id:'',
         param:{}
     },
-    member:[]
+    member:[],
+    steps:[]
 
 
 }
@@ -82,6 +83,14 @@ const bugSlice = createSlice({
         },
         setFilter(state,action:PayloadAction<BugParams>){
             state.loading =true
+        },
+        setSteps(state,action:PayloadAction<Steps[]>){
+            state.steps =action.payload
+            state.loading = false
+        },
+
+        getSteps(state,action:PayloadAction<number>){
+            state.loading =true
         }
 
 
@@ -93,6 +102,7 @@ export const bugActions = bugSlice.actions;
 export const selectBugStatistics = (state: RootState) => state.bug.statistics;
 export const selectBugLoading = (state: RootState) => state.bug.loading;
 export const selectBugAll = (state: RootState) => state.bug.BugAll;
+export const selectSteps = (state: RootState) => state.bug.steps;
 
 
 const bugReducer = bugSlice.reducer;

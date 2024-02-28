@@ -85,7 +85,7 @@ function ProjectAd(props: HomeProps) {
                   <td>{project.project_name}</td>
                   <td>{project.description}</td>
                   <td>{project.create_by}</td>
-                  <td>{project.quantity}</td>
+                  <td>{project.participants}</td>
                 </tr>
               ))}
             </tbody>

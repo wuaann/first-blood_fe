@@ -15,6 +15,8 @@ export interface Bug {
 export interface BugByProject {
     id?: number,
     project_id?: string,
+    title?: string,
+    description?: string,
     project_name?: string,
     category_id?: number | string,
     category_name?: string,
@@ -37,4 +39,13 @@ export interface BugParams {
         status?:string
 
     }
+}
+
+export interface  Steps
+{
+    id?: number,
+    step?: number,
+    bug_id?: number,
+    content?: string,
+
 }

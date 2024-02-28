@@ -1,0 +1,117 @@
+Index: src/models/user.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\nexport interface User{\r\n\r\n    id?: string | number,\r\n    name: string,\r\n    email: string,\r\n    role: string,\r\n    phone:string,\r\n    address:string,\r\n    created_at?: string,\r\n    update_at?: string,\r\n\r\n}\r\nexport interface CreateUser {\r\n    email: string;\r\n    password: string;\r\n    role: number;\r\n  }\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/models/user.ts b/src/models/user.ts
+--- a/src/models/user.ts	(revision 95ecce9f239bb6e414db514258ceed89855959c3)
++++ b/src/models/user.ts	(date 1702606215863)
+@@ -1,18 +1,14 @@
+-
+ export interface User{
+ 
+     id?: string | number,
+     name: string,
+     email: string,
+-    role: string,
++
++    role: number,
+     phone:string,
+     address:string,
++
+     created_at?: string,
+     update_at?: string,
+ 
+ }
+-export interface CreateUser {
+-    email: string;
+-    password: string;
+-    role: number;
+-  }
+Index: src/features/admin/pages/ProjectAdmin.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\n        <div className=\"menu-items\">\r\n            <ul className=\"nav-links\">\r\n                <li><a href=\"http://127.0.0.1:3000/admin\">\r\n                    <i className=\"uil uil-estate\"></i>\r\n                    <span className=\"link-name\">Dashboard</span>\r\n                </a></li>\r\n                <li><a href=\"http://127.0.0.1:3000/useradmin\">\r\n                    <i className=\"uil uil-user\"></i>\r\n                    <span className=\"link-name\">Users</span>\r\n                    \r\n                </a></li>\r\n                <li><a href=\"http://127.0.0.1:3000/projectadmin\">\r\n                    <i className=\"uil uil-clipboard-notes\"></i>\r\n                    <span className=\"link-name\">Projects</span>\r\n                </a></li>\r\n                <li><a href=\"http://127.0.0.1:3000/bugadmin\">\r\n                    <i className=\"uil uil-bug\"></i>\r\n                    <span className=\"link-name\">Bugs</span>                 \r\n                </a></li>\r\n                <li><a href=\"#\">\r\n                    <i className=\"uil uil-setting\"></i>\r\n                    <span className=\"link-name\">Setting</span>\r\n                </a></li>\r\n             </ul> \r\n                      \r\n        </div>\r\n    </nav>\r\n\r\n    <section className=\"dashboard\">\r\n        <div className=\"top\">\r\n            <i className=\"uil uil-bars sidebar-toggle\"></i>\r\n\r\n            <div className=\"search-box\">\r\n                <i className=\"uil uil-search\"></i>\r\n                <input type=\"text\" placeholder=\"Search here...\" />\r\n            </div>\r\n            \r\n        </div>\r\n\r\n        <div className=\"dash-content\">\r\n        <table className=\"table table-striped\">\r\n            <thead>\r\n              <tr>\r\n                <th>Project Name</th>\r\n                <th>Description</th>\r\n                <th>Created By</th>\r\n                <th>Quantity</th>\r\n              </tr>\r\n            </thead>\r\n            <tbody>\r\n              {projects.map((project) => (\r\n                <tr key={project.id}>\r\n                  <td>{project.project_name}</td>\r\n                  <td>{project.description}</td>\r\n                  <td>{project.create_by}</td>\r\n                  <td>{project.participants}</td>\r\n                </tr>\r\n              ))}\r\n            </tbody>\r\n          </table>\r\n        </div>\r\n    </section>\r\n        </>\r\n    );\r\n}\r\n\r\nexport default ProjectAd;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/features/admin/pages/ProjectAdmin.tsx b/src/features/admin/pages/ProjectAdmin.tsx
+--- a/src/features/admin/pages/ProjectAdmin.tsx	(revision 95ecce9f239bb6e414db514258ceed89855959c3)
++++ b/src/features/admin/pages/ProjectAdmin.tsx	(date 1702606215862)
+@@ -1,3 +1,34 @@
++import React, { useEffect, useState } from 'react';
++import './admin.css';
++import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
++import projectApi from 'api/projectApi';
++import {Project, ProjectAdmin} from 'models';
++
++export interface HomeProps {}
++
++function ProjectAd(props: HomeProps) {
++  const [projects, setProjects] = useState<ProjectAdmin[]>([]);
++
++  useEffect(() => {
++    const fetchProjects = async () => {
++      try {
++        const response = await projectApi.getAllProjects();
++        setProjects(response);
++      } catch (error) {
++        console.log(error);
++      }
++    };
++
++    fetchProjects();
++  }, []);
++    return (
++        <>
++             <nav>
++        <div className="logo-name">
++            <div className="logo-image">
++            </div>
++            <span className="logo_name">FIB</span>
++        </div>
+ 
+         <div className="menu-items">
+             <ul className="nav-links">
+Index: src/models/project.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>export interface Project{\r\n        id: string | number,\r\n        project_name: string,\r\n        description: string,\r\n        create_by: string,\r\n        participants:number,\r\n        create_at: Date,\r\n        update_at?: Date,\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/models/project.ts b/src/models/project.ts
+--- a/src/models/project.ts	(revision 95ecce9f239bb6e414db514258ceed89855959c3)
++++ b/src/models/project.ts	(date 1702606215862)
+@@ -2,6 +2,15 @@
+         id: string | number,
+         project_name: string,
+         description: string,
++        create_by_email: string,
++        quantity:number,
++        create_at: Date,
++        update_at?: Date,
++}
++export interface ProjectAdmin{
++        id: string | number,
++        project_name: string,
++        description: string,
+         create_by: string,
+         participants:number,
+         create_at: Date,
+Index: src/models/index.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/models/index.ts b/src/models/index.ts
+new file mode 100644
+--- /dev/null	(date 1702606215862)
++++ b/src/models/index.ts	(date 1702606215862)
+@@ -0,0 +1,3 @@
++export * from './common';
++export * from "./user"
++export * from './project'
+\ No newline at end of file
